@@ -317,9 +317,10 @@ puts ""
 all_movies = Movie.all
 for movie in all_movies
     # query to locate the studio name for this movie 
-    studio_name = Studio.find_by({"id" => movie["studio_id"]})
-    puts "#{movie["title"]} | #{movie["year_released"]} | #{movie["rated"]} #{studio_name["name"]}"
+    studio = Studio.find_by({"id" => movie["studio_id"]})
+    puts "#{movie["title"]} | #{movie["year_released"]} | #{movie["rated"]} #{studio["name"]}"
 end 
+
 
 # Prints a header for the cast output
 puts ""
@@ -332,8 +333,8 @@ puts ""
 all_roles = Role.all
 for role in all_roles
     # query to locate the title for this movie role
-    movie_title = Movie.find_by({"id" => role["movie_id"]})
+    movie = Movie.find_by({"id" => role["movie_id"]})
     # query to locate the actor name for this role
-    actor_name = Actor.find_by({"id" => role["actor_id"]})
-    puts "#{movie_title["title"]} | #{actor_name["name"]} | #{role["character_name"]}"
+    actor = Actor.find_by({"id" => role["actor_id"]})
+    puts "#{movie["title"]} | #{actor["name"]} | #{role["character_name"]}"
 end
